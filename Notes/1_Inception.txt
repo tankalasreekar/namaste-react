@@ -1,0 +1,34 @@
+Namaste React
+
+VSCode
+Google Chrome
+
+vscode uses emmet to give basic starter code
+emmet abbreviations
+
+inject react from cdn using two scripts
+react.development.js - core react framework
+react-dom.development.js - framework required to modify the dom object
+
+React API from react.development
+react - helps to create core components or elements in html like headers, divs etc
+React.createElement(
+1st argument - type of element - h1/div/etc
+2nd argument - an object, a dictionary of attributes to be passed to the element like id, styles, etc
+3rd argument - content to be added inside the new element/ the children of the element
+)
+
+the children of an element can be a whole new element. this idea can be leveraged to create nested components of html.
+
+if we try to print this react element, it's not a simple html code, it's a react/javascript object with multiple attributes
+
+one of them is props, which contains the attributes and children of the element that we create
+
+ReactDOM API from react-dom.development
+ReactDOM helps with manipulating DOM and it's internal tree structure
+ReactDOM needs to know the position of the root of the HTML document in order to manipulate the content
+
+const root = ReactDOM.createRoot(document.getElementbyID("root"));
+root.render(element to be rendered);
+
+root.render replaces the existing content with the new elements

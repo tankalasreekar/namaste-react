@@ -1,0 +1,11 @@
+#heading{
+    color: red;
+}
+
+#parent h1{
+    color: blue;
+}
+
+#parent h2{
+    color: green;
+}
