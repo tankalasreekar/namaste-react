@@ -1,0 +1,98 @@
+package.json is a configuration for npm
+
+npm known as node package manager, helps for managing packages or dependencies that we install in our system
+npm manages javascript packages for node js runtime.
+npm handles the packages and their versioning
+
+npm doesnt have a name as node package manager but famous as that name.
+
+npm helps to process our app and move it from development to production
+processing includes minification/ removing unnucessary code, bundling, etc
+
+npm init - to initialise the npm - outputs a package.json
+npm init -y : skips most of the parts and directly outputs package.json file
+
+the first package we install is parcel
+
+parcel is a package that helps to bundle our application.
+a bundler is used to package the html, css and js of our application
+it helps to give a final shape to our application and push it to production
+
+some alternate bundlers for parcel are webpack, wheat etc
+webpack is used by create-react-app in the backend as a bundler to package any react application
+
+npm install -D parcel
+
+there are 2 types of dependencies that our application can have
+1. Dev dependency - required additionally while developing
+2. Normal dependency - required for developing and in production
+
+-D indicates that we need this package as dev dependency
+
+when installing packages, they will be added to the package.json file under dependencies
+for the version there could possibly be two choices - ~ or ^
+
+~ tilda - when ~ is used, with packages continuosly updating, it might upgrade our dependency to even the latest major version
+^ caret - when ^ is used, it will update only minor/patch upgrades to our package not a major version change
+
+once the npm packages are installed, package-lock.json file and node-modules folder is created or modified
+package.json holds the approximate version of the dependencies but package-lock.json holds the exact version of the dependencies in the environment
+node-modules folder contains all the code of the dependencies or packages that we installed
+
+now we don't want to include these heavy node modules into the git or production application
+so, we can add node_modules to the gitignore file.
+
+but package.json and package-lock.json must be added to the git, so the node_modules can be recreated or downloaded again
+
+to run the application on a local server, we can use parcel
+npx parcel index.html - runs the package on a localhost server
+while we run this command, 2 new folders will get created - .parcel-cache and dist
+
+npx is used to execute packages where as npm is used to install packages.
+
+CDN links is not a good way to inject react into our web application because it is a costly operation as network calls need to be made to download the package
+so, we can install react also as a package that will be included in the node_modules
+
+npm install react
+npm i react-dom
+
+i/install both are same
+
+to use React in application, we need to import it first
+import React from "react"; - "react" is the node_module
+import ReactDOM from "react-dom";
+
+if we execute the html with the default script tags, the browser throws an error saying
+"Browser Scripts cannot contain imports or exports"
+which means that the browser thinks that the script App.js is a normal javascript file but not a React file
+So we should type="module" in the script tag to mark that the script is a React file
+
+Parcel is a BEAST.
+- helps to build applications
+- creates a local server
+- HMR - Hot Module Replacement: upon saving modified files, new changes get reflected instantly
+- File Watching Algorithm written in C++ - this make HMR possible
+- Faster builds by Caching builds - .parcel-cache holds all the cache files - if cache files are deleted, build takes more time from scratch
+- Image Optimization
+- Minification
+- Bundling
+- Compressing files/application
+- Consistent Hashing
+- Code Splitting
+- Differential Bundling - bundles packages to support multiple devices and versions of browsers for applications
+- Diagnostics and better error info
+- Tree Shaking - removes unused code to keep only useful parts
+- Different dev and prod builds
+
+dev build is done using cmd - npx parcel index.html
+prod build is done using cmd - npx parcel build index.html
+this throws an error saying an issue with main:"App.js" in package.json
+bcoz npm by default sets main value as the entry point for the application, but we need to remove that part in order to run with our custom entry point for prod build
+
+After every dev and prod build, some files are created inside dist folder apart from .parcel-cache folder
+the dist folder contains files that are minified and compressed versions of the original files
+
+another parameter that we can specify in package.json is "browerslist"
+here, we can specify which versions of the browsers our application needs to be build on and guarantees 100% working on the mentioned versions
+the values can be an array of specifications like "last 2 Chrome versions", "last 10 Firefox versions"
+the query composition can be checked out in the browserslist.dev and github package
